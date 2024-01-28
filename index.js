@@ -4,7 +4,9 @@ const cookieParser = require("cookie-parser");
 const { adminRoute } = require("./routes/admin");
 const { sellerRoute } = require("./routes/seller");
 const { userRoute } = require("./routes/user");
-
+const bodyParser = require("body-parser");
+const { indexRoute } = require("./routes/indexRoutes");
+app.use(bodyParser.json());
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
@@ -15,7 +17,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 require("./config/database").connect();
 
 // route import and mount
-
+app.use(indexRoute);
 app.use("/user", userRoute);
 app.use("/admin", adminRoute);
 app.use("/seller", sellerRoute);

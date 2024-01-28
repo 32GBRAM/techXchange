@@ -5,9 +5,6 @@ const User = require("../Models/User");
 const { login, signup } = require("../Controller/Auth");
 const { auth, isUser } = require("../middleware/auth");
 
-router.post("/signup", signup);
-router.post("/login", login);
-
 // Testing Route for Middleware
 router.get("/test", auth, (req, res) => {
   res.json({
